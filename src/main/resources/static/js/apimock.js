@@ -1,6 +1,6 @@
 //@author hcadavid
 
-apimock=(function(){
+var apimock=(function(){
 
 	var mockdata=[];
 
@@ -26,6 +26,7 @@ apimock=(function(){
 	}	
 
 })();
+
 
 /*
 Example of use:

@@ -1,5 +1,8 @@
+
+
 var app = (function () {
     var author;
+    var api = apiclient;
 
     var updateBlueprintsList = function (data) {
         var table = $("#blueprintsTable");
@@ -18,7 +21,7 @@ var app = (function () {
     };
 
     var drawBlueprint = function(name) {
-        apimock.getBlueprintsByNameAndAuthor(author, name, function(blueprint) {
+        api.getBlueprintsByNameAndAuthor(author, name, function(blueprint) {
             var canvas = $("#blueprintCanvas")[0];
             var ctx = canvas.getContext("2d");
             ctx.clearRect(0, 0, canvas.width, canvas.height); // Limpiar el canvas
@@ -34,8 +37,14 @@ var app = (function () {
 
     return {
         getAuthorBlueprints: function () {
+
             author = $("#authorInput").val();
-            apimock.getBlueprintsByAuthor(author, updateBlueprintsList);
+            console.log(author);
+            if (author.length == 0 ){
+                api.getAllBlueprints();
+            }else{
+                api.getBlueprintsByAuthor(author, updateBlueprintsList);
+            }
         },
         drawBlueprint: drawBlueprint
     };
