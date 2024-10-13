@@ -72,6 +72,21 @@ public class BlueprintAPIController {
     }
 
 
+    @RequestMapping(value = "/{author}/{bpname}", method = RequestMethod.PUT)
+    public ResponseEntity<?> updateBlueprint(@PathVariable("author") String author, @PathVariable("bpname") String bpname,@RequestBody Blueprint blueprint) {
+        try {
+            if (!blueprint.getAuthor().equals(author) || !blueprint.getName().equals(bpname)) {
+                return new ResponseEntity<>("Author or blueprint name does not match the URL", HttpStatus.BAD_REQUEST);
+            }
+            bps.updateBlueprint(author, bpname, blueprint);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception ex) {
+            Logger.getLogger(BlueprintAPIController.class.getName()).log(Level.SEVERE, null, ex);
+            // Retorna 404 Not Found si el plano no se encuentra para actualizar
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
 }
 
 
