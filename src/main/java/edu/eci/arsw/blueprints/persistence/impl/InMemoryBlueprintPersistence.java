@@ -111,4 +111,13 @@ public class InMemoryBlueprintPersistence implements BlueprintsPersistence {
             throw new BlueprintNotFoundException("Blueprint not found for update: " + bp.getAuthor() + ", " + bp.getName());
         }
     }
+
+    @Override
+    public void deleteBlueprint(String author, String name) throws BlueprintPersistenceException {
+        Blueprint blueprint = blueprints.get(new Tuple<>(author, name));
+        if (blueprint != null) {
+            blueprints.remove(new Tuple<>(author, name));
+        }
+
+    }
 }

@@ -6,7 +6,6 @@
 package edu.eci.arsw.blueprints.controllers;
 
 import java.util.ArrayList;
-import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 
 /**
  *
@@ -86,6 +86,17 @@ public class BlueprintAPIController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+    @RequestMapping(value = "/{author}/{bpname}", method=RequestMethod.DELETE)
+    public ResponseEntity<?> deleteBlueprint(@PathVariable String author, @PathVariable String bpname) {
+        try{
+            bps.deleteBlueprint(author,bpname);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }catch (Exception ex){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+    
 
 }
 

@@ -24,7 +24,7 @@ var app = (function () {
     var draw = function() {
         var canvas = $("#blueprintCanvas")[0];
         var ctx = canvas.getContext("2d");
-        ctx.clearRect(0, 0, canvas.width, canvas.height); // Limpiar el canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height); 
         ctx.beginPath();
         
         for (var i = 0; i < points.length - 1; i++) {
@@ -36,17 +36,16 @@ var app = (function () {
     };
 
     var updateBlueprint = function() {
-        if (currentBlueprint) { // Verifica si hay un blueprint seleccionado
+        if (currentBlueprint) { 
             var updatedBlueprint = {
                 author: author,
                 name: currentBlueprint.name,
                 points: points
             };
 
-            // Llama a la función updateBlueprint del apiclient
             api.updateBlueprint(updatedBlueprint, function(response) {
                 console.log("Blueprint updated:", response);
-                getAuthorBlueprints(); // Actualiza la lista después de la modificación
+                getAuthorBlueprints(); 
             });
         } else {
             console.error("No blueprint selected for update.");
@@ -77,23 +76,41 @@ var app = (function () {
             </tr>`;
             table.append(row);
         });
-        // updateAuthorName(data); // Descomentar si tienes esta función definida
     };
 
     var selectBlueprint = function(name) {
-        // Al seleccionar un blueprint, se establece la variable currentBlueprint y se cargan los puntos
         api.getBlueprintsByNameAndAuthor(author, name, function(blueprint) {
             currentBlueprint = blueprint;
-            points = blueprint.points.slice(); // Copiar los puntos para editar
-            draw(); // Dibujar el blueprint seleccionado en el canvas
+            points = blueprint.points.slice(); 
+            draw(); 
         });
     };
+
+
+    var createBluePrint = function(){
+
+        //Prepara el canvas eliminandolo 
+        var table = $("#blueprintsTable tbody");
+        var canvas = $("#blueprintCanvas")[0];
+        var ctx = canvas.getContext("2d");
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.beginPath();
+        table.empty();
+
+
+    
+    }
+
+    var deleteBlueprint = function(){
+        
+    }
 
     return {
         initializeCanvasEvents: initializeCanvasEvents,
         getAuthorBlueprints: getAuthorBlueprints,
         updateBlueprint: updateBlueprint,
         selectBlueprint: selectBlueprint,
-        draw: draw
+        draw: draw,
+        createBluePrint:createBluePrint
     };
 })();
