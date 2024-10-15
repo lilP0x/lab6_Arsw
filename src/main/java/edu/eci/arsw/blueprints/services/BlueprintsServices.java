@@ -76,9 +76,12 @@ public class BlueprintsServices {
         if (existingBlueprint == null) {
             throw new BlueprintNotFoundException("Blueprint not found");
         }
-        // Actualizar el contenido del plano existente
         existingBlueprint.setPoints(newBlueprint.getPoints());
         bpp.updateBlueprint(existingBlueprint);
+    }
+
+    public void deleteBlueprint(String author, String name) throws BlueprintPersistenceException {
+        bpp.deleteBlueprint(author, name);
     }
 
 }

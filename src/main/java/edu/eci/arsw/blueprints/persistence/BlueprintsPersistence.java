@@ -43,4 +43,7 @@ public interface BlueprintsPersistence {
     Set<Blueprint> getBlueprintsByAuthor(String author) throws BlueprintNotFoundException;
 
     public void updateBlueprint(Blueprint bp) throws BlueprintNotFoundException;
+
+    public void deleteBlueprint(String author, String name) throws BlueprintPersistenceException;
+
 }
