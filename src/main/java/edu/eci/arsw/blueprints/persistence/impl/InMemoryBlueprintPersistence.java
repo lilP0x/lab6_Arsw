@@ -114,10 +114,12 @@ public class InMemoryBlueprintPersistence implements BlueprintsPersistence {
 
     @Override
     public void deleteBlueprint(String author, String name) throws BlueprintPersistenceException {
-        Blueprint blueprint = blueprints.get(new Tuple<>(author, name));
-        if (blueprint != null) {
-            blueprints.remove(new Tuple<>(author, name));
+        Tuple<String, String> key = new Tuple<>(author, name);
+        if (blueprints.containsKey(key)) {
+            blueprints.remove(key);
+        } else {
+            throw new BlueprintPersistenceException("Blueprint not found for deletion: " + author + ", " + name);
         }
-
     }
+
 }

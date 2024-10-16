@@ -52,6 +52,18 @@ var apiclient = (function () {
 
             });
 
+        },
+
+        deleteBlueprint: function(author,name,callback){
+            $.ajax({
+                url: apiUrl + "/" + author + "/" + name,
+                method: "DELETE", 
+                success: function(response) {
+                    callback(response); 
+                },
+            });
         }
+
+
     };
 })();

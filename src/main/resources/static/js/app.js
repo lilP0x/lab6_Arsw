@@ -4,20 +4,17 @@ var app = (function () {
     var currentBlueprint; // Variable para almacenar el blueprint actualmente seleccionado
     var points = []; // Array para almacenar los puntos en el canvas
 
-    // Inicialización del canvas y eventos
     var initializeCanvasEvents = function() {
         var canvas = $("#blueprintCanvas")[0];
         var ctx = canvas.getContext("2d");
         
-        // Manejador de eventos para clicks en el canvas
         canvas.addEventListener("pointerdown", function(event) {
             var rect = canvas.getBoundingClientRect();
             var x = event.clientX - rect.left;
             var y = event.clientY - rect.top;
 
-            // Agregar el nuevo punto al arreglo de puntos
             points.push({x: x, y: y});
-            draw(); // Redibujar el blueprint con los nuevos puntos
+            draw(); 
         });
     };
 
@@ -72,6 +69,7 @@ var app = (function () {
                 <td>${bp.points.length}</td>
                 <td>
                     <button onclick="app.selectBlueprint('${bp.name}')">Open</button>
+                    <button onclick="app.deleteBlueprint('${bp.name}')">Delete</button>
                 </td>
             </tr>`;
             table.append(row);
@@ -100,17 +98,28 @@ var app = (function () {
 
     
     }
-
-    var deleteBlueprint = function(){
-        
-    }
-
+    var deleteBlueprint = function(name) {
+        console.log(name);
+        console.log(author);
+        if (author && name) {
+            api.deleteBlueprint(author, name, function(response) {
+                setTimeout(function() {
+                    getAuthorBlueprints(); 
+                }, 100); 
+            });
+        } else {
+            console.error("No se puede eliminar el blueprint: autor o nombre faltantes.");
+        }
+    };
+    
+    
     return {
         initializeCanvasEvents: initializeCanvasEvents,
         getAuthorBlueprints: getAuthorBlueprints,
         updateBlueprint: updateBlueprint,
         selectBlueprint: selectBlueprint,
         draw: draw,
-        createBluePrint:createBluePrint
+        createBluePrint:createBluePrint,
+        deleteBlueprint:deleteBlueprint
     };
 })();
