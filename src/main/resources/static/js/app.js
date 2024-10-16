@@ -99,8 +99,7 @@ var app = (function () {
     
     }
     var deleteBlueprint = function(name) {
-        console.log(name);
-        console.log(author);
+       
         if (author && name) {
             api.deleteBlueprint(author, name, function(response) {
                 setTimeout(function() {
