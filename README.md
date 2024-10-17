@@ -29,3 +29,15 @@ http://localhost:8080/index.html
 
 ![A](/imagenes_readme/Errores%20en%20terminal.png)
 
+
+
+## Fron-End - Logica
+
+Creando el modulo de javascrit app.js
+
+![A](/imagenes_readme/modulos.png)
+
+Posterior a eso tendremos que colocar las respectivas importaciones en el html 
+
+ ## <script src="js/apimock.js"></script>
+ ## <script src="js/app.js"></script>
