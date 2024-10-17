@@ -52,3 +52,12 @@ y cada objeto es independiente del otro, autor, puntos, nombre del plano.
 
 
 ![alt text](image-1.png)
+
+![alt text](image-2.png)
+
+
+Acontinuacion tambien veremos la funcion que permite encontrar los blueprints correspondientes a cada autor usando el nombre del autor.
+
+## Punto 5 
+
+Para el siguiente punto tendremos quecoloar en el app.js una operacion pucli que permitea 
