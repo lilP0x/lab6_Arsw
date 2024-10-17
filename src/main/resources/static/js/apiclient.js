@@ -2,13 +2,7 @@ var apiclient = (function () {
     var apiUrl = "http://localhost:8080/blueprints";
 
     return {
-        getAllBlueprints: function (callback) {
-            $.get(apiUrl, function(data) {
-                callback(data); 
-            }).fail(function () {
-                console.error("Error al obtener todos los planos");
-            });
-        },
+      
 
         getBlueprintsByAuthor: function (author, callback) {
             $.get(apiUrl + "/" + author, function (data) {
