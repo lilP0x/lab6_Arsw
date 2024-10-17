@@ -1,8 +1,8 @@
 var app = (function () {
     var author;
     var api = apiclient;
-    var currentBlueprint; // Variable para almacenar el blueprint actualmente seleccionado
-    var points = []; // Array para almacenar los puntos en el canvas
+    var currentBlueprint; 
+    var points = []; 
 
     var initializeCanvasEvents = function() {
         var canvas = $("#blueprintCanvas")[0];
@@ -53,7 +53,7 @@ var app = (function () {
         author = $("#authorInput").val();
         if (author.length == 0) {
             api.getAllBlueprints(function(data) {
-                updateBlueprintsList(data); // Asegúrate de pasar los datos al callback
+                updateBlueprintsList(data); 
             });
         } else {
             api.getBlueprintsByAuthor(author, updateBlueprintsList);

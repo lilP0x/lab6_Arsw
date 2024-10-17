@@ -41,3 +41,14 @@ Posterior a eso tendremos que colocar las respectivas importaciones en el html
 
  ## <script src="js/apimock.js"></script>
  ## <script src="js/app.js"></script>
+
+ Se nos pide que el modulo antes creado mantenga de manera privdad el nombre del autor seleccionado 
+
+![A](/imagenes_readme/variables.PNG)
+
+Como podemos ver aqui por medio de la declaracion de variables dentro de la estrucutra modulo de javascript
+
+y cada objeto es independiente del otro, autor, puntos, nombre del plano.
+
+
+![alt text](image-1.png)
